@@ -1,0 +1,46 @@
+<ion-grid>
+  <ion-row justify-content-center>
+    <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+      <div text-center>
+        <img src="assets/images/ambulance.png" alt="" />
+      </div>
+
+      <div text-center>
+        <h4>Register Form</h4>
+      </div>
+      <form [formGroup]="registerForm" (ngSubmit)="register()" padding>
+        <ion-item>
+          <ion-icon name="contact" class="form-icon"></ion-icon>
+          <ion-input type="text" placeholder="Full Name" formControlName="fullName"></ion-input>
+        </ion-item>
+        <div text-center class="form-error">{{ formErrors.fullName }}</div>
+        <ion-item>
+          <ion-icon name="mail" class="form-icon"></ion-icon>
+          <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+        <div text-center class="form-error">{{ formErrors.email }}</div>
+        <ion-item>
+          <ion-icon name="key" class="form-icon"></ion-icon>
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+        <div text-center class="form-error">{{ formErrors.password }}</div>
+
+        <div padding-top>
+          <ion-button
+            type="submit"
+            size="large"
+            color="tertiary"
+            expand="block"
+            [disabled]="!registerForm.valid"
+          >
+            Sign Up
+          </ion-button>
+        </div>
+      </form>
+
+      <div text-center>
+        Already have an account? <span class="login" (click)="pushLoginPage()">Login</span>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

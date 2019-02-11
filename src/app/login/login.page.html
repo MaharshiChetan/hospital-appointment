@@ -1,0 +1,40 @@
+<ion-grid>
+  <ion-row justify-content-center>
+    <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+      <div text-center>
+        <img src="assets/images/ambulance.png" alt="" />
+      </div>
+      <div text-center>
+        <h4>Login Form</h4>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="login()" padding>
+        <ion-item>
+          <ion-icon name="mail" class="form-icon"></ion-icon>
+          <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+        <div text-center class="form-error">{{ formErrors.email }}</div>
+
+        <ion-item>
+          <ion-icon name="key" class="form-icon"></ion-icon>
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+        <div text-center class="form-error">{{ formErrors.password }}</div>
+
+        <div padding-top>
+          <ion-button
+            type="submit"
+            size="large"
+            color="tertiary"
+            expand="block"
+            [disabled]="!loginForm.valid"
+          >
+            Login
+          </ion-button>
+        </div>
+      </form>
+      <div text-center>
+        Don't have an account? <span class="signup" (click)="pushRegisterPage()">Sign Up</span>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
