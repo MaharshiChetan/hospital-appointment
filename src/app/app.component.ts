@@ -6,25 +6,44 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthService } from './services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastService } from './services/toast.service';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
-  public appPages = [
+  adminPages = [
     {
       title: 'Home',
       url: '/home',
       icon: 'home',
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list',
+      title: 'Submitted Form',
+      url: '/submitted-form',
+      icon: 'checkbox-outline',
+    },
+  ];
+  patientPages = [
+    {
+      title: 'Home',
+      url: '/home',
+      icon: 'home',
+    },
+    {
+      title: 'Admission Form',
+      url: '/admission-form',
+      icon: 'medkit',
+    },
+    {
+      title: 'Submitted Form',
+      url: '/submitted-form',
+      icon: 'checkbox-outline',
     },
   ];
   authenticated: any = false;
+  role: string;
 
   constructor(
     private platform: Platform,
@@ -32,14 +51,22 @@ export class AppComponent {
     private statusBar: StatusBar,
     private authService: AuthService,
     private _firebaseAuth: AngularFireAuth,
+    private _firebaseDatabase: AngularFireDatabase,
     private alertCtrl: AlertController,
     private navCtrl: NavController,
     private toastService: ToastService
   ) {
     this.initializeApp();
-    this._firebaseAuth.authState.subscribe(state => {
-      if (state) {
-        this.authenticated = state;
+    this._firebaseAuth.authState.subscribe(auth => {
+      if (auth) {
+        this.authenticated = auth;
+        const subscription = this._firebaseDatabase
+          .object(`users/${auth.uid}`)
+          .valueChanges()
+          .subscribe((user: any) => {
+            this.role = user.admin ? 'admin' : 'patient';
+            subscription.unsubscribe();
+          });
       }
     });
   }

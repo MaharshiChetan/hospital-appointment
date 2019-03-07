@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Admission Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="admissionForm" (ngSubmit)="submitAdmissionForm()">
+    <ion-item>
+      <ion-label>Patient Name :</ion-label>
+      <ion-input type="text" formControlName="patientName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Father Name :</ion-label>
+      <ion-input type="text" formControlName="fatherName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Health Issue :</ion-label>
+      <ion-textarea type="text" formControlName="healthIssue"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Religion :</ion-label>
+      <ion-input type="text" formControlName="religion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Address :</ion-label>
+      <ion-textarea type="text" formControlName="address"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>State :</ion-label>
+      <ion-input type="text" formControlName="state"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>City :</ion-label>
+      <ion-input type="text" formControlName="city"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mobile :</ion-label>
+      <ion-input type="number" formControlName="mobile"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Age :</ion-label>
+      <ion-input type="number" formControlName="age"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Admission Date</ion-label>
+      <ion-datetime display-format="MMM DD, YYYY" formControlName="admissionDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select placeholder="Select One" formControlName="gender">
+        <ion-select-option value="Female">Female</ion-select-option>
+        <ion-select-option value="Male">Male</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hospital Name</ion-label>
+      <ion-select placeholder="Select One" formControlName="hospitalName">
+        <ion-select-option value="Mayo Clinic">Mayo Clinic</ion-select-option>
+        <ion-select-option value="Massachusetts General Hospital"
+          >Massachusetts General Hospital</ion-select-option
+        >
+        <ion-select-option value="Johns Hopkins Hospital">Johns Hopkins Hospital</ion-select-option>
+        <ion-select-option value="UCLA Medical Center">UCLA Medical Center</ion-select-option>
+        <ion-select-option value="Cleveland Clinic">Cleveland Clinic</ion-select-option>
+        <ion-select-option value="University of Colorado Hospital"
+          >University of Colorado Hospital</ion-select-option
+        >
+        <ion-select-option value="Houston Methodist Hospital"
+          >Houston Methodist Hospital</ion-select-option
+        >
+        <ion-select-option value="Apollo Hospital">Apollo Hospital</ion-select-option>
+        <ion-select-option value="Shalby Hospital">Shalby Hospital</ion-select-option>
+        <ion-select-option value="Billroth Hospital">Billroth Hospital</ion-select-option>
+        <ion-select-option value="Agarwal's Hospital">Agarwal's Hospital</ion-select-option>
+        <ion-select-option value="Fortis Healthcare">Fortis Healthcare</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Martial Status</ion-label>
+      <ion-select placeholder="Select One" formControlName="martialStatus">
+        <ion-select-option value="Married">Married</ion-select-option>
+        <ion-select-option value="Unmarried">Unmarried</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <div padding-top>
+      <ion-button type="submit" color="success" expand="block" [disabled]="!admissionForm.valid">
+        Submit
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

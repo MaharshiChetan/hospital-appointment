@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { ToastService } from '../services/toast.service';
+import { AuthService } from '../../services/auth.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -87,7 +87,7 @@ export class RegisterPage implements OnInit {
       message: 'Please wait...',
     });
     await loading.present();
-    console.log(this.registerForm.value);
+
     const signupCredentials = this.registerForm.value;
     this.authService
       .singup(signupCredentials)

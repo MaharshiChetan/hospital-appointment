@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Submitted Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="getSubmittedForm($event)" *ngIf="role === 'admin'">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-refresher slot="fixed" (ionRefresh)="getMySubmittedForm($event)" *ngIf="role === 'patient'">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <h6 *ngIf="1 > submittedForms?.length">No Form Submitted</h6>
+  <ion-card *ngFor="let form of submittedForms">
+    <ion-item>
+      <ion-label
+        >Patient Name : <span>{{ form.patientName }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Father Name : <span>{{ form.fatherName }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Health Issue : <span>{{ form.healthIssue }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Religion : <span>{{ form.religion }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Address : <span>{{ form.address }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >State : <span>{{ form.state }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >City : <span>{{ form.city }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Mobile : <span>{{ form.mobile }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Age : <span>{{ form.age }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Admission Date : <span>{{ form.admissionDate }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Gender : <span>{{ form.gender }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Hospital Name : <span>{{ form.hospitalName }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Martial Status : <span>{{ form.martialStatus }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Status : <span>{{ form.formStatus || 'Pending' | uppercase }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item start *ngIf="role === 'admin'" no-lines>
+      <ion-button size="medium" color="danger" (click)="takeActionOnForm(false, form)">
+        Reject
+      </ion-button>
+      <ion-button size="medium" color="success" (click)="takeActionOnForm(true, form)">
+        Accept
+      </ion-button>
+    </ion-item>
+    <ion-item start *ngIf="role !== 'admin'" no-lines>
+      <ion-button
+        size="medium"
+        color="success"
+        [routerLink]="['/bill/' + form.key]"
+        routerDirection="forward"
+        >See Bill</ion-button
+      >
+    </ion-item>
+    <ion-item start *ngIf="role === 'admin' && form.formStatus === 'accepted'">
+      <ion-button
+        size="medium"
+        color="primary"
+        [routerLink]="['/create-bill/' + form.key]"
+        routerDirection="forward"
+        >Create Bill</ion-button
+      >
+    </ion-item>
+  </ion-card>
+</ion-content>

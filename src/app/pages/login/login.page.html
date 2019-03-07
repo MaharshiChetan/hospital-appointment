@@ -4,26 +4,21 @@
       <div text-center>
         <img src="assets/images/ambulance.png" alt="" />
       </div>
-
       <div text-center>
-        <h4>Register Form</h4>
+        <h4>Login Form</h4>
       </div>
-      <form [formGroup]="registerForm" (ngSubmit)="register()" padding>
-        <ion-item>
-          <ion-icon name="contact" class="form-icon"></ion-icon>
-          <ion-input type="text" placeholder="Full Name" formControlName="fullName"></ion-input>
-        </ion-item>
-        <div text-center class="form-error">{{ formErrors.fullName }}</div>
+      <form [formGroup]="loginForm" (ngSubmit)="login()" padding>
         <ion-item>
           <ion-icon name="mail" class="form-icon"></ion-icon>
           <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
         </ion-item>
-        <div text-center class="form-error">{{ formErrors.email }}</div>
+        <div text-right class="form-error">{{ formErrors.email }}</div>
+
         <ion-item>
           <ion-icon name="key" class="form-icon"></ion-icon>
           <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
         </ion-item>
-        <div text-center class="form-error">{{ formErrors.password }}</div>
+        <div text-right class="form-error">{{ formErrors.password }}</div>
 
         <div padding-top>
           <ion-button
@@ -31,15 +26,14 @@
             size="large"
             color="tertiary"
             expand="block"
-            [disabled]="!registerForm.valid"
+            [disabled]="!loginForm.valid"
           >
-            Sign Up
+            Login
           </ion-button>
         </div>
       </form>
-
       <div text-center>
-        Already have an account? <span class="login" (click)="pushLoginPage()">Login</span>
+        Don't have an account? <span class="signup" (click)="pushRegisterPage()">Sign Up</span>
       </div>
     </ion-col>
   </ion-row>

@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Create Bill</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="billForm" (ngSubmit)="createBill()">
+    <ion-item>
+      <ion-label>Patient Name :</ion-label>
+      <ion-input type="text" formControlName="patientName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Doctor Name :</ion-label>
+      <ion-input type="text" formControlName="doctorName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Admission Date</ion-label>
+      <ion-datetime display-format="MMM DD, YYYY" formControlName="admissionDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Discharge Date</ion-label>
+      <ion-datetime display-format="MMM DD, YYYY" formControlName="dischargeDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Age :</ion-label>
+      <ion-input type="number" formControlName="age"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select placeholder="Select One" formControlName="gender">
+        <ion-select-option value="Female">Female</ion-select-option>
+        <ion-select-option value="Male">Male</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Medicine Charge :</ion-label>
+      <ion-input type="number" formControlName="medicineCharge"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tests Charge :</ion-label>
+      <ion-input type="number" formControlName="testsCharge"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Charge :</ion-label>
+      <ion-input type="number" formControlName="totalCharge"></ion-input>
+    </ion-item>
+
+    <div padding-top>
+      <ion-button type="submit" color="success" expand="block" [disabled]="!billForm.valid">
+        Generate Bill
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

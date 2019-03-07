@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { NavController, LoadingController } from '@ionic/angular';
-import { ToastService } from '../services/toast.service';
+import { ToastService } from '../../services/toast.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
@@ -94,7 +94,6 @@ export class LoginPage implements OnInit {
     });
     await loading.present();
 
-    console.log(this.loginForm.value);
     const loginCredentials = this.loginForm.value;
     this.authService
       .login(loginCredentials)

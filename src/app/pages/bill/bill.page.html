@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Generated Bill</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher
+    slot="fixed"
+    (ionRefresh)="getMyGeneratedBillForm($event)"
+    *ngIf="role === 'patient'"
+  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <h6 *ngIf="!generatedBillForms">Bill is not generated</h6>
+  <ion-card *ngIf="generatedBillForms">
+    <ion-item>
+      <ion-label>
+        Patient Name : <span>{{ generatedBillForms.patientName }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Doctor Name : <span>{{ generatedBillForms.doctorName }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Admission Date : <span>{{ generatedBillForms.admissionDate }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Discharge Date : <span>{{ generatedBillForms.dischargeDate }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Age : <span>{{ generatedBillForms.age }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Gender : <span>{{ generatedBillForms.gender }}</span></ion-label
+      >
+    </ion-item>
+
+    <ion-item>
+      <ion-label
+        >Medicine Charge : <span>{{ generatedBillForms.medicineCharge }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Tests Charge : <span>{{ generatedBillForms.testsCharge }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label
+        >Total Charge : <span>{{ generatedBillForms.totalCharge }}</span></ion-label
+      >
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        Payment Status :
+        <span style="color:yellowgreen; font-weight: bold" *ngIf="generatedBillForms.payment">
+          Paid
+        </span>
+        <span style="color:red; font-weight: bold" *ngIf="!generatedBillForms.payment"
+          >Not Paid</span
+        >
+      </ion-label>
+    </ion-item>
+
+    <ion-item start *ngIf="role === 'patient' && !generatedBillForms.payment" no-lines>
+      <ion-button size="medium" color="success" (click)="pay()">Pay</ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>

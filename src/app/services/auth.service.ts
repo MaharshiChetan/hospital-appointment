@@ -7,13 +7,22 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class AuthService {
   authState: any = null;
+  role: any;
 
   constructor(
     private _firebaseAuth: AngularFireAuth,
     private _firebaseDatabase: AngularFireDatabase
   ) {
-    _firebaseAuth.authState.subscribe(auth => {
+    _firebaseAuth.authState.subscribe((auth: any) => {
       this.authState = auth;
+      if (auth) {
+        this._firebaseDatabase
+          .object(`users/${auth.uid}`)
+          .valueChanges()
+          .subscribe((user: any) => {
+            this.role = user.admin ? 'admin' : 'patient';
+          });
+      }
     });
   }
 
@@ -61,5 +70,9 @@ export class AuthService {
   // Returns current user UID
   get currentUserId(): string {
     return this.authenticated ? this.authState.uid : '';
+  }
+
+  get roleMember(): any {
+    return this.role;
   }
 }

@@ -11,6 +11,13 @@ ion-row {
   height: $height100;
 }
 
+.register {
+  color: #ffffff;
+}
+
+h4 {
+  color: #ffffff;
+}
 ion-col {
   border: 1px solid #488aff;
   background: $white-color;
@@ -33,7 +40,7 @@ img {
   width: 50%;
 }
 
-.login {
+.signup {
   color: #488aff;
 }
 
@@ -44,4 +51,5 @@ img {
 .form-error {
   color: #f04141;
   margin-top: 5px;
+  font-size: 0.95em;
 }
