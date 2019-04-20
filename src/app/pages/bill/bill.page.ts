@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BillService } from 'src/app/services/bill.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-bill',
@@ -15,7 +17,9 @@ export class BillPage implements OnInit {
   constructor(
     private billService: BillService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastService: ToastService,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -31,8 +35,10 @@ export class BillPage implements OnInit {
     this.generatedBillForms.payment = true;
     this.billService
       .payBill(this.generatedBillForms, this.billId)
-      .then(() => {
+      .then(async () => {
         console.log('success');
+        await this.toastService.showToast('Bill is paid successfully!');
+        this.navCtrl.back();
       })
       .catch(e => {
         console.log(e);

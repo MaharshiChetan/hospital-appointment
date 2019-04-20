@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBDoRfarMV3i3e_ek-8vSID_0tR4fjpDHg',
-    authDomain: 'my-hospital-82ed0.firebaseapp.com',
-    databaseURL: 'https://my-hospital-82ed0.firebaseio.com',
-    projectId: 'my-hospital-82ed0',
-    storageBucket: 'my-hospital-82ed0.appspot.com',
-    messagingSenderId: '1086255558969',
+    apiKey: "AIzaSyBCys2wJJ757D8-q6KEZO2yXwBVhvHrftc",
+    authDomain: "my-hospital-b4f69.firebaseapp.com",
+    databaseURL: "https://my-hospital-b4f69.firebaseio.com",
+    projectId: "my-hospital-b4f69",
+    storageBucket: "my-hospital-b4f69.appspot.com",
+    messagingSenderId: "968757357254"
   },
 };
 

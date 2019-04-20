@@ -13,6 +13,6 @@ export class ToastService {
       duration: 3000,
       position: 'top',
     });
-    toast.present();
+    await toast.present();
   }
 }

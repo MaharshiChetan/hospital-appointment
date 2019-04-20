@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PatientAdmissionService } from 'src/app/services/patient-admission.service';
 import { BillService } from 'src/app/services/bill.service';
+import { NavController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-create-bill',
@@ -17,7 +19,9 @@ export class CreateBillPage implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private patientAdmissionService: PatientAdmissionService,
-    private billService: BillService
+    private billService: BillService,
+    private navCtrl: NavController,
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -65,12 +69,14 @@ export class CreateBillPage implements OnInit {
       });
   }
 
-  createBill() {
+   createBill() {
     const billDetails = this.billForm.value;
     this.billService
       .createBill(billDetails, this.admissionFormId)
-      .then(() => {
+      .then(async () => {
         console.log('success');
+        await this.toastService.showToast('Bill generated successfully!');
+        this.navCtrl.back();
       })
       .catch(e => {
         console.log(e);

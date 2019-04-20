@@ -34,7 +34,7 @@ export class AdmissionFormPage implements OnInit {
       address: ['', [Validators.required, Validators.minLength(6)]],
       state: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      mobile: ['', [Validators.required, Validators.maxLength(12)]],
+      mobile: ['', [Validators.required, Validators.maxLength(10)]],
       age: ['', [Validators.required, Validators.maxLength(3)]],
       admissionDate: ['', [Validators.required]],
       gender: ['', [Validators.required]],
